@@ -102,7 +102,7 @@ HTMLWidgets.widget({
         })(nodes);
         
       // set domain of colors scale based on data (added)
-      colors.domain(uniqueNames);
+      colors.domain(uniqueNames.slice(1));  // trying to remove "root" from legend and colours
 
       var path = vis.data([json]).selectAll("path")
           .data(nodes)
