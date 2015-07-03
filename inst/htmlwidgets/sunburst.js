@@ -90,6 +90,20 @@ HTMLWidgets.widget({
           return (d.dx > 0.005); // 0.005 radians = 0.29 degrees
           });
 
+      // Get unique names from the data (added)
+      var uniqueNames = (function(a) {
+          var output = [];
+          a.forEach(function(d) {
+              if (output.indexOf(d.name) === -1) {
+                  output.push(d.name);
+              }
+          });
+          return output;
+        })(nodes);
+        
+      // set domain of colors scale based on data (added)
+      colors.domain(uniqueNames);
+
       var path = vis.data([json]).selectAll("path")
           .data(nodes)
           .enter().append("path")
